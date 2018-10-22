@@ -10,4 +10,5 @@
 
 #import "LTBase64.h"
 #import "NSString+LTRSA.h"
+#import "NSData+LTAES.h"
 #endif /* LTOpenSSL_h */

@@ -10,34 +10,29 @@
 
 @interface NSData (LTRSA)
 
-//RSA加密 data 2 hexString
-- (NSString *)lt_rsaEncodedHexStringWithKey:(RSA *)rsa_key
-                                    keyType:(LTRSAKeyType)keyType
-                                paddingType:(LTRSAPaddingType)paddingType;
-//RSA加密 data 2 base64string
-- (NSString *)lt_rsaEncodedBase64StringWithKey:(RSA *)rsa_key
+//RSA加密 data 2 Encrypted hexString
+- (NSString *)lt_rsaEncryptedHexStringWithKey:(RSA *)rsa_key
+                                      keyType:(LTRSAKeyType)keyType
+                                  paddingType:(LTRSAPaddingType)paddingType;
+//RSA加密 data 2 Encrypted base64string
+- (NSString *)lt_rsaEncryptedBase64StringWithKey:(RSA *)rsa_key
                                        keyType:(LTRSAKeyType)keyType
                                    paddingType:(LTRSAPaddingType)paddingType;
-//RSA加密 data 2 data
-- (NSData *)lt_rsaEncodedDataWithKey:(RSA *)rsa_key
+//RSA加密 data 2 Encrypted data
+- (NSData *)lt_rsaEncryptedDataWithKey:(RSA *)rsa_key
                              keyType:(LTRSAKeyType)keyType
                          paddingType:(LTRSAPaddingType)paddingType;
 
-//解密 data 2 hex string
-- (NSString *)lt_rsaDecodedHexStringWithKey:(RSA *)rsa_Key
+//解密 data 2 Decrypted hex string
+- (NSString *)lt_rsaDecryptedHexStringWithKey:(RSA *)rsa_Key
                                     keyType:(LTRSAKeyType)keyType
                                 paddingType:(LTRSAPaddingType)paddingType;
-//解密 data 2 string
-- (NSString *)lt_rsaDecodedStringWithKey:(RSA *)rsa_Key
+//解密 data 2 Decrypted string
+- (NSString *)lt_rsaDecryptedStringWithKey:(RSA *)rsa_Key
                                  keyType:(LTRSAKeyType)keyType
                              paddingType:(LTRSAPaddingType)paddingType;
 //解密 data 2 data
-- (NSData *)lt_rsaDecodedDataWithKey:(RSA *)rsa_Key
+- (NSData *)lt_rsaDecryptedDataWithKey:(RSA *)rsa_Key
                              keyType:(LTRSAKeyType)keyType
                          paddingType:(LTRSAPaddingType)paddingType;
 @end
-
-//bytes 2 hexString
-NSString *LT_HexStringFromBytes(const unsigned char *bytes,int length);
-//data 2 hexString
-NSString *LT_HexStringFromData(NSData *data);

@@ -22,17 +22,17 @@ typedef NS_ENUM(NSUInteger, LTRSAPaddingType) {
 
 @interface LTRSA : NSObject
 
-//RSA加密 encodingData 2 encodedData
-+ (NSData *)LT_rsaEncodeData:(NSData *)encodingData
-                     withKey:(RSA *)rsa_key
-                     keyType:(LTRSAKeyType)keyType
-                 paddingType:(LTRSAPaddingType)paddingType;
+//RSA加密 encryptingData 2 encryptedData
++ (NSData *)LT_rsaEncryptedData:(NSData *)encryptingData
+                        withKey:(RSA *)rsa_key
+                        keyType:(LTRSAKeyType)keyType
+                    paddingType:(LTRSAPaddingType)paddingType;
 
-//解密 encodedData 2 decodeData
-+ (NSData *)LT_rsaDecodeData:(NSData *)encodedData
-                     withKey:(RSA *)rsa_key
-                     keyType:(LTRSAKeyType)keyType
-                 paddingType:(LTRSAPaddingType)paddingType;
+//解密 encryptedData 2 decryptData
++ (NSData *)LT_rsaDecryptData:(NSData *)encryptedData
+                      withKey:(RSA *)rsa_key
+                      keyType:(LTRSAKeyType)keyType
+                  paddingType:(LTRSAPaddingType)paddingType;
 @end
 
 //生成密钥对
