@@ -45,5 +45,5 @@ rsa_enc rsa_dec
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'OpenSSL', '~> 1.0.208'
+  s.dependency 'OpenSSL'
 end
