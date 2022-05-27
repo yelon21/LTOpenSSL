@@ -6,11 +6,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <openssl/aes.h>
 
 typedef NS_ENUM(NSUInteger, LTAESEncryptType) {
-    LTAESEncryptType_DEC = AES_DECRYPT,
-    LTAESEncryptType_ENC = AES_ENCRYPT
+    LTAESEncryptType_DEC = 0,
+    LTAESEncryptType_ENC = 1
 };
 
 typedef NS_ENUM(NSUInteger, LTAESPatternType) {

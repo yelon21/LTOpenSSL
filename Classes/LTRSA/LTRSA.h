@@ -6,17 +6,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <openssl/rsa.h>
 #import "LTBase64.h"
 
-typedef NS_ENUM(NSUInteger, LTRSAKeyType) {
+typedef NS_ENUM(int, LTRSAKeyType) {
     LTRSAKeyTypePublic,
     LTRSAKeyTypePrivate
 };
 
-typedef NS_ENUM(NSUInteger, LTRSAPaddingType) {
-    LTRSAPaddingTypeNone = RSA_NO_PADDING,
-    LTRSAPaddingTypePKCS1 = RSA_PKCS1_PADDING,
+typedef NS_ENUM(int, LTRSAPaddingType) {
+    LTRSAPaddingTypeNone = 3, // RSA_NO_PADDING
+    LTRSAPaddingTypePKCS1 = 1, // RSA_PKCS1_PADDING
     //    LTRSAPaddingTypePKCS1
 };
 
@@ -24,28 +23,29 @@ typedef NS_ENUM(NSUInteger, LTRSAPaddingType) {
 
 //RSA加密 encryptingData 2 encryptedData
 + (NSData *)LT_rsaEncryptedData:(NSData *)encryptingData
-                        withKey:(RSA *)rsa_key
+                        withKey:(NSValue *)keyValue
                         keyType:(LTRSAKeyType)keyType
                     paddingType:(LTRSAPaddingType)paddingType;
 
 //解密 encryptedData 2 decryptData
 + (NSData *)LT_rsaDecryptData:(NSData *)encryptedData
-                      withKey:(RSA *)rsa_key
+                      withKey:(NSValue *)keyValue
                       keyType:(LTRSAKeyType)keyType
                   paddingType:(LTRSAPaddingType)paddingType;
 @end
 
 //生成密钥对
-int LT_RSAGenerateRSAKey(RSA *rsa_key,int keyBits,NSString **pubPEMBase64Content,NSString **priPEMBase64Content);
+int LT_RSAGenerateRSAKey(NSValue *keyValue,int keyBits,NSString **pubPEMBase64Content,NSString **priPEMBase64Content);
 //根据公钥模指获取公钥对象
-RSA *LT_RSAKeyWithModulusAndPublicExponent(NSString *modulus,unsigned int pubExponent);
+NSValue *LT_RSAKeyWithModulusAndPublicExponent(NSString *modulus,unsigned int pubExponent);
 //根据模指获取密钥对象
-RSA *LT_RSAKeyWithModulusAndPublicPrivateExponent(NSString *modulus,
-                                                  unsigned int pubExponent,
-                                                  NSString *priExponent);
+NSValue *LT_RSAKeyWithModulusAndPublicPrivateExponent(NSString *modulus,
+                                                      unsigned int pubExponent,
+                                                      NSString *priExponent);
 //根据未加密pem文件获取密钥对象
-RSA *LT_RSAKeyWithPEMKeyPath(NSString *pemKeyPath,LTRSAKeyType keyType);
+NSValue *LT_RSAKeyWithPEMKeyPath(NSString *pemKeyPath,LTRSAKeyType keyType);
 //根据未加密pem base64 key获取密钥对象
-RSA *LT_RSAKeyWithPEMContent(NSString *pemContent,LTRSAKeyType keyType);
+NSValue *LT_RSAKeyWithPEMContent(NSString *pemContent,LTRSAKeyType keyType);
 //释放
-void LT_RSAKeyFree(RSA *rsa_key);
+void LT_KeyValueFree(NSValue *keyValue);
+void LT_OpenSSL_cleanup(void);
