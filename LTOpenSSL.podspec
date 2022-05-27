@@ -36,7 +36,8 @@ rsa_enc rsa_dec
   s.ios.deployment_target = '6.0'
 
   s.source_files = 'Classes/**/*'
-	s.vendored_libraries = 'lib/*.a'
+  s.vendored_libraries = 'lib/*.a'
+  s.vendored_frameworks = 'lib/OpenSSL.framework'
   
   # s.resource_bundles = {
   #   'LTOpenSSL' => ['LTOpenSSL/Assets/*.png']
